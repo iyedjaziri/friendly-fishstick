@@ -6,7 +6,7 @@ import ProjectDetail from "@/react-app/pages/ProjectDetail";
 export default function App() {
   return (
     <ThemeProvider>
-      <Router>
+      <Router basename={import.meta.env.BASE_URL}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/project/:id" element={<ProjectDetail />} />
