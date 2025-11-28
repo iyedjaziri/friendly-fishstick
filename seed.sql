@@ -1,12 +1,13 @@
-import { Project } from '@/shared/types';
+-- Clear existing data
+DELETE FROM projects;
+DELETE FROM sqlite_sequence WHERE name='projects';
 
-export const projects: Project[] = [
-    {
-        id: 1,
-        title: 'RAG System for Cultural Events',
-        strand_type: 'technical',
-        description: 'Users struggle to discover relevant cultural events; existing search tools provide generic results without personalization.',
-        problem: `**1. Context & Business Need**
+-- Project 1: Puls-Events (Technical)
+INSERT INTO projects (title, strand_type, description, problem, method, result, github_url, tags, position_index) VALUES (
+  'RAG System for Cultural Events',
+  'technical',
+  'Users struggle to discover relevant cultural events; existing search tools provide generic results without personalization.',
+  '**1. Context & Business Need**
 
 Organization: Puls-Events (cultural recommendation platform)
 
@@ -14,8 +15,8 @@ Business Problem: Users struggle to discover relevant cultural events; existing 
 
 Stakeholders: Product team, marketing team, end users seeking cultural recommendations
 
-Constraints: GDPR-compliant data handling, real-time API response (<500ms), regional event data freshness (< 1 year)`,
-        method: `**2. Technical Solution**
+Constraints: GDPR-compliant data handling, real-time API response (<500ms), regional event data freshness (< 1 year)',
+  '**2. Technical Solution**
 
 Description: Production-ready Retrieval-Augmented Generation (RAG) system combining vector search (FAISS) with LLM generation (Mistral) for intelligent event recommendations
 
@@ -52,8 +53,8 @@ API development & Docker deployment (2 weeks)
 
 Evaluation & optimization (1 week)
 
-Collaboration: Weekly syncs with product manager (Jérémy) for requirements validation, feedback integration from marketing for query patterns`,
-        result: `**4. Results & Impact**
+Collaboration: Weekly syncs with product manager (Jérémy) for requirements validation, feedback integration from marketing for query patterns',
+  '**4. Results & Impact**
 
 Deliverables:
 
@@ -81,20 +82,18 @@ Future Perspectives: Multi-language support (FR/EN), personalization layer using
 
 Tags: RAG, NLP, FAISS, LangChain, Mistral, FastAPI, Docker, Vector Search, Semantic Similarity, LLM, Pytest, RAGAS
 
-Documentation: Technical report (architecture, model selection, evaluation results), PowerPoint presentation (10-15 slides)`,
-        github_url: 'https://github.com/iyedjaziri/',
-        image_url: null,
-        tags: 'RAG, NLP, FAISS, LangChain, Mistral, FastAPI, Docker',
-        position_index: 0,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString()
-    },
-    {
-        id: 2,
-        title: 'Hybrid RAG + SQL for Sports Analytics',
-        strand_type: 'technical',
-        description: 'Coaches need rapid access to player statistics and match insights; existing assistant provides text-only answers without numerical grounding.',
-        problem: `**1. Context & Business Need**
+Documentation: Technical report (architecture, model selection, evaluation results), PowerPoint presentation (10-15 slides)',
+  'https://github.com/iyedjaziri/',
+  'RAG, NLP, FAISS, LangChain, Mistral, FastAPI, Docker',
+  0
+);
+
+-- Project 2: SportSee (Technical)
+INSERT INTO projects (title, strand_type, description, problem, method, result, github_url, tags, position_index) VALUES (
+  'Hybrid RAG + SQL for Sports Analytics',
+  'technical',
+  'Coaches need rapid access to player statistics and match insights; existing assistant provides text-only answers without numerical grounding.',
+  '**1. Context & Business Need**
 
 Organization: SportSee (basketball analytics platform)
 
@@ -102,8 +101,8 @@ Business Problem: Coaches need rapid access to player statistics and match insig
 
 Stakeholders: Coaches, analysts, physical trainers
 
-Constraints: Real-time query response, accuracy for statistical queries, scalability for multiple teams`,
-        method: `**2. Technical Solution**
+Constraints: Real-time query response, accuracy for statistical queries, scalability for multiple teams',
+  '**2. Technical Solution**
 
 Description: Enhanced RAG system integrating SQL tool for structured data queries (NBA match statistics) with vector search for unstructured text (Reddit match commentary)
 
@@ -144,8 +143,8 @@ Automated evaluation pipeline (RAGAS) (1 week)
 
 Performance optimization & documentation (1 week)
 
-Collaboration: Direct feedback from Sarah (Lead Data Scientist) on SQL query templates and evaluation criteria`,
-        result: `**4. Results & Impact**
+Collaboration: Direct feedback from Sarah (Lead Data Scientist) on SQL query templates and evaluation criteria',
+  '**4. Results & Impact**
 
 Deliverables:
 
@@ -173,29 +172,27 @@ Future Perspectives: Real-time game integration, multi-sport expansion, video an
 
 Tags: RAG, LangChain, SQL, Pydantic, RAGAS, LLM Evaluation, Sports Analytics, Hybrid Retrieval, PostgreSQL, NLP
 
-Documentation: Evaluation report with before/after metrics, architecture diagram, SQL schema documentation`,
-        github_url: 'https://github.com/iyedjaziri/',
-        image_url: null,
-        tags: 'RAG, LangChain, SQL, Pydantic, RAGAS, Sports Analytics',
-        position_index: 1,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString()
-    },
-    {
-        id: 3,
-        title: 'Urban Carbon Neutrality Planning',
-        strand_type: 'domain',
-        description: 'Seattle\'s carbon neutrality goals require identifying high-consumption buildings for targeted energy efficiency interventions.',
-        problem: `**1. Context & Business Need**
+Documentation: Evaluation report with before/after metrics, architecture diagram, SQL schema documentation',
+  'https://github.com/iyedjaziri/',
+  'RAG, LangChain, SQL, Pydantic, RAGAS, Sports Analytics',
+  1
+);
+
+-- Project 3: Seattle Energy (Domain)
+INSERT INTO projects (title, strand_type, description, problem, method, result, github_url, tags, position_index) VALUES (
+  'Urban Carbon Neutrality Planning',
+  'domain',
+  'Seattle''s carbon neutrality goals require identifying high-consumption buildings for targeted energy efficiency interventions.',
+  '**1. Context & Business Need**
 
 Organization: City of Seattle - Department of Environment & Energy
 
-Business Problem: Seattle's carbon neutrality goals require identifying high-consumption buildings for targeted energy efficiency interventions
+Business Problem: Seattle''s carbon neutrality goals require identifying high-consumption buildings for targeted energy efficiency interventions
 
 Stakeholders: City planning department, environmental policy team, building managers
 
-Constraints: Historical data only (2016), heterogeneous building types, missing values in energy audit records`,
-        method: `**2. Technical Solution**
+Constraints: Historical data only (2016), heterogeneous building types, missing values in energy audit records',
+  '**2. Technical Solution**
 
 Description: Regression model predicting annual building energy consumption (kWh/m²) based on structural, geographic, and operational features
 
@@ -231,8 +228,8 @@ Interpretability analysis (SHAP) (1 week)
 
 Recommendations & reporting (1 week)
 
-Collaboration: Regular meetings with environmental policy team to validate feature relevance and interpret model insights`,
-        result: `**4. Results & Impact**
+Collaboration: Regular meetings with environmental policy team to validate feature relevance and interpret model insights',
+  '**4. Results & Impact**
 
 Deliverables:
 
@@ -262,20 +259,18 @@ Future Perspectives: Real-time weather integration, expansion to water/gas consu
 
 Tags: Regression, XGBoost, SHAP, Feature Engineering, Urban Analytics, Energy Efficiency, Carbon Neutrality, Interpretability, Policy Impact
 
-Documentation: Final report (Situation-Complication-Resolution framework), presentation slides, SHAP visualizations`,
-        github_url: 'https://github.com/iyedjaziri/',
-        image_url: null,
-        tags: 'Regression, XGBoost, SHAP, Urban Analytics, Energy Efficiency',
-        position_index: 2,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString()
-    },
-    {
-        id: 4,
-        title: 'Employee Attrition Prediction',
-        strand_type: 'domain',
-        description: 'Abnormally high employee turnover (>20% annually) impacting project delivery and increasing recruitment costs.',
-        problem: `**1. Context & Business Need**
+Documentation: Final report (Situation-Complication-Resolution framework), presentation slides, SHAP visualizations',
+  'https://github.com/iyedjaziri/',
+  'Regression, XGBoost, SHAP, Urban Analytics, Energy Efficiency',
+  2
+);
+
+-- Project 4: TechNova Partners (Domain)
+INSERT INTO projects (title, strand_type, description, problem, method, result, github_url, tags, position_index) VALUES (
+  'Employee Attrition Prediction',
+  'domain',
+  'Abnormally high employee turnover (>20% annually) impacting project delivery and increasing recruitment costs.',
+  '**1. Context & Business Need**
 
 Organization: TechNova Partners (ESN - Digital transformation consultancy)
 
@@ -283,8 +278,8 @@ Business Problem: Abnormally high employee turnover (>20% annually) impacting pr
 
 Stakeholders: HR department, C-suite executives, team managers
 
-Constraints: Imbalanced dataset (minority class: departures), sensitive HR data (GDPR compliance), need for actionable insights`,
-        method: `**2. Technical Solution**
+Constraints: Imbalanced dataset (minority class: departures), sensitive HR data (GDPR compliance), need for actionable insights',
+  '**2. Technical Solution**
 
 Description: Binary classification model predicting employee departure risk, coupled with feature importance analysis to identify retention levers
 
@@ -320,8 +315,8 @@ Advanced modeling & hyperparameter tuning (2 weeks)
 
 SHAP interpretability & recommendations (1 week)
 
-Collaboration: HR Director provided domain expertise for feature validation; weekly reviews to align insights with HR policies`,
-        result: `**4. Results & Impact**
+Collaboration: HR Director provided domain expertise for feature validation; weekly reviews to align insights with HR policies',
+  '**4. Results & Impact**
 
 Deliverables:
 
@@ -353,20 +348,18 @@ Future Perspectives: Real-time scoring dashboard for managers, integration with 
 
 Tags: Classification, XGBoost, SHAP, Imbalanced Data, SMOTE, HR Analytics, Employee Retention, Feature Importance, Stratified Cross-Validation
 
-Documentation: HR recommendations report, feature importance visualizations, presentation deck`,
-        github_url: 'https://github.com/iyedjaziri/',
-        image_url: null,
-        tags: 'Classification, XGBoost, SHAP, HR Analytics, Employee Retention',
-        position_index: 3,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString()
-    },
-    {
-        id: 5,
-        title: 'ML Model Deployment with FastAPI',
-        strand_type: 'technical',
-        description: 'ML models developed but not production-ready; need robust API, database integration, and CI/CD pipeline for reliable deployment.',
-        problem: `**1. Context & Business Need**
+Documentation: HR recommendations report, feature importance visualizations, presentation deck',
+  'https://github.com/iyedjaziri/',
+  'Classification, XGBoost, SHAP, HR Analytics, Employee Retention',
+  3
+);
+
+-- Project 5: Futurisys (Technical)
+INSERT INTO projects (title, strand_type, description, problem, method, result, github_url, tags, position_index) VALUES (
+  'ML Model Deployment with FastAPI',
+  'technical',
+  'ML models developed but not production-ready; need robust API, database integration, and CI/CD pipeline for reliable deployment.',
+  '**1. Context & Business Need**
 
 Organization: Futurisys (innovative tech company deploying ML solutions)
 
@@ -374,8 +367,8 @@ Business Problem: ML models developed but not production-ready; need robust API,
 
 Stakeholders: Technical director (Aurélien), product teams consuming API, DevOps team
 
-Constraints: Production-grade quality requirements (test coverage, documentation, scalability), secure secret management, PostgreSQL integration mandatory`,
-        method: `**2. Technical Solution**
+Constraints: Production-grade quality requirements (test coverage, documentation, scalability), secure secret management, PostgreSQL integration mandatory',
+  '**2. Technical Solution**
 
 Description: Full-stack ML deployment solution: FastAPI-based REST API exposing ML model, PostgreSQL database for logging predictions, GitHub Actions CI/CD pipeline with automated tests
 
@@ -414,8 +407,8 @@ Test suite development (Pytest) (1 week)
 
 CI/CD pipeline setup (GitHub Actions) (1 week)
 
-Collaboration: Technical director (Aurélien) reviewed architecture decisions and tested API endpoints; DevOps team validated deployment strategy`,
-        result: `**4. Results & Impact**
+Collaboration: Technical director (Aurélien) reviewed architecture decisions and tested API endpoints; DevOps team validated deployment strategy',
+  '**4. Results & Impact**
 
 Deliverables:
 
@@ -447,20 +440,18 @@ Future Perspectives: Kubernetes deployment for scalability, model versioning wit
 
 Tags: FastAPI, PostgreSQL, SQLAlchemy, Pytest, GitHub Actions, CI/CD, Docker, REST API, Pydantic, Swagger, MLOps
 
-Documentation: README (setup, usage, deployment), API documentation (Swagger UI), database schema diagram`,
-        github_url: 'https://github.com/iyedjaziri/',
-        image_url: null,
-        tags: 'FastAPI, PostgreSQL, Docker, CI/CD, MLOps',
-        position_index: 4,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString()
-    },
-    {
-        id: 6,
-        title: 'Credit Scoring with MLOps',
-        strand_type: 'domain',
-        description: 'Need automated credit scoring for clients with limited credit history; manual approval slow and inconsistent.',
-        problem: `**1. Context & Business Need**
+Documentation: README (setup, usage, deployment), API documentation (Swagger UI), database schema diagram',
+  'https://github.com/iyedjaziri/',
+  'FastAPI, PostgreSQL, Docker, CI/CD, MLOps',
+  4
+);
+
+-- Project 6: Prêt à Dépenser Part 1 (BOTH -> Domain)
+INSERT INTO projects (title, strand_type, description, problem, method, result, github_url, tags, position_index) VALUES (
+  'Credit Scoring with MLOps',
+  'domain',
+  'Need automated credit scoring for clients with limited credit history; manual approval slow and inconsistent.',
+  '**1. Context & Business Need**
 
 Organization: "Prêt à dépenser" (consumer credit company)
 
@@ -468,8 +459,8 @@ Business Problem: Need automated credit scoring for clients with limited credit 
 
 Stakeholders: Credit risk team, loan officers, compliance department
 
-Constraints: Class imbalance (few defaults), asymmetric cost (False Negative >> False Positive), GDPR compliance, model explainability for regulatory requirements`,
-        method: `**2. Technical Solution**
+Constraints: Class imbalance (few defaults), asymmetric cost (False Negative >> False Positive), GDPR compliance, model explainability for regulatory requirements',
+  '**2. Technical Solution**
 
 Description: Credit scoring classification model with full MLOps pipeline (experiment tracking, model registry, serving) using MLflow; custom business cost function optimizing FN/FP trade-off
 
@@ -509,8 +500,8 @@ Business cost optimization + threshold tuning (1 week)
 
 MLflow model registry + serving setup (1 week)
 
-Collaboration: Manager (Michaël) provided business context for cost function; credit risk team validated feature interpretations`,
-        result: `**4. Results & Impact**
+Collaboration: Manager (Michaël) provided business context for cost function; credit risk team validated feature interpretations',
+  '**4. Results & Impact**
 
 Deliverables:
 
@@ -544,20 +535,18 @@ Future Perspectives: Real-time scoring integration, A/B testing framework, conti
 
 Tags: MLOps, MLflow, Credit Scoring, XGBoost, LightGBM, Class Imbalance, SMOTE, Threshold Optimization, Business Metrics, SHAP, Model Registry, Financial Risk
 
-Documentation: MLflow UI screenshots, business cost analysis report, SHAP visualizations, modeling notebooks`,
-        github_url: 'https://github.com/iyedjaziri/',
-        image_url: null,
-        tags: 'MLOps, MLflow, Credit Scoring, XGBoost, Financial Risk',
-        position_index: 5,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString()
-    },
-    {
-        id: 7,
-        title: 'MLOps Deployment Pipeline',
-        strand_type: 'technical',
-        description: 'Credit scoring model needs production deployment with real-time inference, monitoring, and automated retraining capabilities.',
-        problem: `**1. Context & Business Need**
+Documentation: MLflow UI screenshots, business cost analysis report, SHAP visualizations, modeling notebooks',
+  'https://github.com/iyedjaziri/',
+  'MLOps, MLflow, Credit Scoring, XGBoost, Financial Risk',
+  5
+);
+
+-- Project 7: Prêt à Dépenser Part 2 (Technical)
+INSERT INTO projects (title, strand_type, description, problem, method, result, github_url, tags, position_index) VALUES (
+  'MLOps Deployment Pipeline',
+  'technical',
+  'Credit scoring model needs production deployment with real-time inference, monitoring, and automated retraining capabilities.',
+  '**1. Context & Business Need**
 
 Organization: "Prêt à dépenser" (continuation of P6)
 
@@ -565,8 +554,8 @@ Business Problem: Credit scoring model needs production deployment with real-tim
 
 Stakeholders: Credit Express department (business users), Tech Lead (Chloé), IT infrastructure team
 
-Constraints: Real-time scoring (<1s response), data drift detection, regulatory audit trail (GDPR logging), cost optimization (Azure cloud budget)`,
-        method: `**2. Technical Solution**
+Constraints: Real-time scoring (<1s response), data drift detection, regulatory audit trail (GDPR logging), cost optimization (Azure cloud budget)',
+  '**2. Technical Solution**
 
 Description: Complete MLOps production pipeline: Dockerized FastAPI serving credit scoring model, GitHub Actions CI/CD, Streamlit monitoring dashboard, data drift detection (Evidently AI)
 
@@ -607,8 +596,8 @@ Monitoring dashboard (Streamlit) + drift detection (1 week)
 
 Performance optimization (inference speed, caching) (1 week)
 
-Collaboration: Tech Lead (Chloé) defined SLAs (latency, uptime); Infrastructure team reviewed Docker security & deployment strategy`,
-        result: `**4. Results & Impact**
+Collaboration: Tech Lead (Chloé) defined SLAs (latency, uptime); Infrastructure team reviewed Docker security & deployment strategy',
+  '**4. Results & Impact**
 
 Deliverables:
 
@@ -646,20 +635,18 @@ Future Perspectives: Kubernetes deployment for scalability, A/B testing framewor
 
 Tags: MLOps, Docker, CI/CD, GitHub Actions, FastAPI, Gradio, Streamlit, Data Drift, Evidently AI, Monitoring, Model Serving, PostgreSQL, ONNX
 
-Documentation: Deployment guide (Docker setup, CI/CD configuration), monitoring dashboard screenshots, drift detection report, performance optimization analysis`,
-        github_url: 'https://github.com/iyedjaziri/',
-        image_url: null,
-        tags: 'MLOps, Docker, CI/CD, FastAPI, Data Drift, Monitoring',
-        position_index: 6,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString()
-    },
-    {
-        id: 8,
-        title: 'Semi-Supervised Medical Imaging',
-        strand_type: 'domain',
-        description: 'Brain tumor detection requires expensive radiologist annotations; limited budget (€300) but large unlabeled dataset available.',
-        problem: `**1. Context & Business Need**
+Documentation: Deployment guide (Docker setup, CI/CD configuration), monitoring dashboard screenshots, drift detection report, performance optimization analysis',
+  'https://github.com/iyedjaziri/',
+  'MLOps, Docker, CI/CD, FastAPI, Data Drift, Monitoring',
+  6
+);
+
+-- Project 8: CurelyticsIA (BOTH -> Domain)
+INSERT INTO projects (title, strand_type, description, problem, method, result, github_url, tags, position_index) VALUES (
+  'Semi-Supervised Medical Imaging',
+  'domain',
+  'Brain tumor detection requires expensive radiologist annotations; limited budget (€300) but large unlabeled dataset available.',
+  '**1. Context & Business Need**
 
 Organization: CurelyticsIA (e-health startup specializing in medical image analysis)
 
@@ -667,8 +654,8 @@ Business Problem: Brain tumor detection requires expensive radiologist annotatio
 
 Stakeholders: Medical team (radiologists), product management, regulatory affairs (medical device approval pathway)
 
-Constraints: Patient data privacy (anonymization), small labeled set, regulatory requirements for explainability, budget constraints for labeling`,
-        method: `**2. Technical Solution**
+Constraints: Patient data privacy (anonymization), small labeled set, regulatory requirements for explainability, budget constraints for labeling',
+  '**2. Technical Solution**
 
 Description: Semi-supervised learning pipeline: (1) clustering on unlabeled images to generate pseudo-labels, (2) pre-training CNN on pseudo-labeled data, (3) fine-tuning on expert-labeled data
 
@@ -714,8 +701,8 @@ Semi-supervised training (pre-train + fine-tune) (2 weeks)
 
 Comparative evaluation & documentation (1 week)
 
-Collaboration: Radiologists validated pseudo-label quality (random sample review); product team defined deployment scalability requirements (4M images, €5K budget)`,
-        result: `**4. Results & Impact**
+Collaboration: Radiologists validated pseudo-label quality (random sample review); product team defined deployment scalability requirements (4M images, €5K budget)',
+  '**4. Results & Impact**
 
 Deliverables:
 
@@ -749,20 +736,18 @@ Future Perspectives: Active learning for intelligent sample selection (maximize 
 
 Tags: Semi-Supervised Learning, Medical Imaging, Deep Learning, ResNet, K-Means, Pseudo-Labeling, CNN, Transfer Learning, PyTorch, Brain Tumor Detection, Cost Optimization
 
-Documentation: Clustering analysis report (t-SNE, ARI), comparative performance analysis, scalability feasibility study, medical imaging compliance considerations`,
-        github_url: 'https://github.com/iyedjaziri/',
-        image_url: null,
-        tags: 'Deep Learning, Medical Imaging, PyTorch, Semi-Supervised Learning',
-        position_index: 7,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString()
-    },
-    {
-        id: 9,
-        title: 'Agritech Crop Recommendation',
-        strand_type: 'technical',
-        description: 'Farmers need data-driven decisions for crop selection; traditional methods rely on experience vs. data.',
-        problem: `**1. Context & Business Need**
+Documentation: Clustering analysis report (t-SNE, ARI), comparative performance analysis, scalability feasibility study, medical imaging compliance considerations',
+  'https://github.com/iyedjaziri/',
+  'Deep Learning, Medical Imaging, PyTorch, Semi-Supervised Learning',
+  7
+);
+
+-- Project 9: Agritech Answers (BOTH -> Technical)
+INSERT INTO projects (title, strand_type, description, problem, method, result, github_url, tags, position_index) VALUES (
+  'Agritech Crop Recommendation',
+  'technical',
+  'Farmers need data-driven decisions for crop selection; traditional methods rely on experience vs. data.',
+  '**1. Context & Business Need**
 
 Organization: Agritech Answers (agricultural optimization & agritech innovation)
 
@@ -770,8 +755,8 @@ Business Problem: Farmers need data-driven decisions for crop selection; traditi
 
 Stakeholders: Farmers (end users), Lead Data Scientist (Gabriel), agronomists (domain experts)
 
-Constraints: Heterogeneous data sources, need real-time predictions, user-friendly interface for non-technical farmers`,
-        method: `**2. Technical Solution**
+Constraints: Heterogeneous data sources, need real-time predictions, user-friendly interface for non-technical farmers',
+  '**2. Technical Solution**
 
 Description: Full-stack ML application: (1) Yield prediction API (crop-specific regression models), (2) Crop recommendation engine (simulates all crops, ranks by yield), (3) Streamlit web interface, (4) MLflow experiment tracking
 
@@ -785,7 +770,7 @@ Feature Engineering: PCA for dimensionality reduction, proxy variables (irrigati
 
 Modeling: Regression models (XGBoost, LightGBM, Random Forest) for yield prediction
 
-Recommendation: Simulate all crop types with user's parcel conditions → rank by predicted yield
+Recommendation: Simulate all crop types with user''s parcel conditions → rank by predicted yield
 
 MLOps: MLflow tracking (experiments, hyperparameters, metrics), model registry
 
@@ -814,8 +799,8 @@ Frontend development (Streamlit) (1 week)
 
 CI/CD pipeline + Dockerization (1 week)
 
-Collaboration: Gabriel provided agricultural domain expertise; agronomists validated feature relevance (temperature, pesticide use, fertilizers)`,
-        result: `**4. Results & Impact**
+Collaboration: Gabriel provided agricultural domain expertise; agronomists validated feature relevance (temperature, pesticide use, fertilizers)',
+  '**4. Results & Impact**
 
 Deliverables:
 
@@ -853,20 +838,18 @@ Future Perspectives: Weather API integration (real-time forecasts), soil sensor 
 
 Tags: MLOps, Agritech, Precision Agriculture, XGBoost, MLflow, FastAPI, Streamlit, PCA, Feature Engineering, Docker, CI/CD, Recommendation System, Regression
 
-Documentation: Business report (PDF with MLflow screenshots), technical architecture diagram, API documentation, user guide (farmers), agronomist validation report`,
-        github_url: 'https://github.com/iyedjaziri/',
-        image_url: null,
-        tags: 'MLOps, Agritech, XGBoost, FastAPI, Streamlit, Docker',
-        position_index: 8,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString()
-    },
-    {
-        id: 10,
-        title: 'Fashion Recommendation Scoping',
-        strand_type: 'domain',
-        description: 'Users struggle to find similar fashion items; manual search inefficient.',
-        problem: `**1. Context & Business Need**
+Documentation: Business report (PDF with MLflow screenshots), technical architecture diagram, API documentation, user guide (farmers), agronomist validation report',
+  'https://github.com/iyedjaziri/',
+  'MLOps, Agritech, XGBoost, FastAPI, Streamlit, Docker',
+  8
+);
+
+-- Project 10: Fashion-Insta (Domain)
+INSERT INTO projects (title, strand_type, description, problem, method, result, github_url, tags, position_index) VALUES (
+  'Fashion Recommendation Scoping',
+  'domain',
+  'Users struggle to find similar fashion items; manual search inefficient.',
+  '**1. Context & Business Need**
 
 Organization: Fashion-Insta (e-commerce fashion retailer)
 
@@ -874,8 +857,8 @@ Business Problem: Users struggle to find similar fashion items; manual search in
 
 Stakeholders: VP Product (Alicia), COMEX (executive committee - budget approval), engineering team, end customers
 
-Constraints: POC must demonstrate feasibility within 3 weeks for COMEX presentation; Azure cloud partnership; limited initial budget (€170K for 3.5 months POC)`,
-        method: `**2. Technical Solution**
+Constraints: POC must demonstrate feasibility within 3 weeks for COMEX presentation; Azure cloud partnership; limited initial budget (€170K for 3.5 months POC)',
+  '**2. Technical Solution**
 
 Description: Complete AI project scoping including: technical architecture (vision + recommendation system), economic dimensioning (team staffing, Azure costs), ROI analysis, system design, RGPD compliance framework
 
@@ -922,8 +905,8 @@ Data Scientist (0.5 FTE)
 
 MLOps/Tech Lead (0.5 FTE)
 
-Total: 3.3 FTE`,
-        result: `**4. Results & Impact**
+Total: 3.3 FTE',
+  '**4. Results & Impact**
 
 Deliverables:
 
@@ -959,20 +942,18 @@ Future Perspectives: Multi-modal recommendation (text + image), personalization 
 
 Tags: AI Project Management, Computer Vision, Recommendation Systems, System Design, Azure, ResNet, ROI Analysis, Project Scoping, RGPD, Economic Modeling, Fashion Tech
 
-Documentation: Project scoping document (comprehensive), COMEX presentation (PowerPoint), system architecture diagram, cost breakdown spreadsheet`,
-        github_url: 'https://github.com/iyedjaziri/',
-        image_url: null,
-        tags: 'AI Project Management, Computer Vision, Recommendation Systems, Azure',
-        position_index: 9,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString()
-    },
-    {
-        id: 11,
-        title: 'NLP-Powered Immigration Workflow',
-        strand_type: 'domain',
-        description: 'Immigration lawyers spend 60-70% of time manually reviewing documents; high error rates and slow turnaround.',
-        problem: `**1. Context & Business Need**
+Documentation: Project scoping document (comprehensive), COMEX presentation (PowerPoint), system architecture diagram, cost breakdown spreadsheet',
+  'https://github.com/iyedjaziri/',
+  'AI Project Management, Computer Vision, Recommendation Systems, Azure',
+  9
+);
+
+-- Project 11: Union (BOTH -> Domain)
+INSERT INTO projects (title, strand_type, description, problem, method, result, github_url, tags, position_index) VALUES (
+  'NLP-Powered Immigration Workflow',
+  'domain',
+  'Immigration lawyers spend 60-70% of time manually reviewing documents; high error rates and slow turnaround.',
+  '**1. Context & Business Need**
 
 Organization: Union (Legal Tech Startup, Toronto, Canada)
 
@@ -980,8 +961,8 @@ Business Problem: Immigration lawyers and consultants spend 60-70% of their time
 
 Stakeholders: Immigration law firms, immigration consultants, applicants seeking permanent residence, regulatory bodies (IRCC - Immigration, Refugees and Citizenship Canada)
 
-Constraints: Highly regulated immigration procedures, multilingual documentation (English, French, other languages), data privacy (sensitive personal documents - passports, marriage certificates, financial records), legal liability for errors, GDPR/PIPEDA compliance`,
-        method: `**2. Technical Solution**
+Constraints: Highly regulated immigration procedures, multilingual documentation (English, French, other languages), data privacy (sensitive personal documents - passports, marriage certificates, financial records), legal liability for errors, GDPR/PIPEDA compliance',
+  '**2. Technical Solution**
 
 Description: AI-powered proof-of-concept automating relationship evidence processing in immigration workflows for legal firms through NLP document classification, evidence extraction, and automated validation pipeline
 
@@ -1048,8 +1029,8 @@ Immigration lawyers: Domain expertise for validation rules, document requirement
 
 Legal tech advisors: Compliance guidance, regulatory landscape navigation
 
-Technical advisors: Architecture reviews, security audits`,
-        result: `**4. Results & Impact**
+Technical advisors: Architecture reviews, security audits',
+  '**4. Results & Impact**
 
 Deliverables:
 
@@ -1103,24 +1084,22 @@ AI-powered case outcome prediction (approval likelihood scoring)
 
 Tags: NLP, Legal Tech, Immigration, Document Classification, Named Entity Recognition, spaCy, Transformers, BERT, Data Privacy, PIPEDA, Entrepreneurship, Customer Discovery, Toronto, Validation Pipeline, Startup
 
-Documentation: Customer discovery report, PoC architecture diagram, compliance framework documentation, demo video, pitch deck (if available)`,
-        github_url: 'https://github.com/iyedjaziri/',
-        image_url: null,
-        tags: 'NLP, Legal Tech, Immigration, NER, spaCy, Transformers, Startup',
-        position_index: 10,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString()
-    },
-    {
-        id: 11,
-        title: 'Multi-Omics Target Identification',
-        strand_type: 'technical',
-        description: 'Understanding palmitoylation requires integrating heterogeneous genomic datasets; manual integration is error-prone.',
-        problem: `**1. Context & Business Need**
+Documentation: Customer discovery report, PoC architecture diagram, compliance framework documentation, demo video, pitch deck (if available)',
+  'https://github.com/iyedjaziri/',
+  'NLP, Legal Tech, Immigration, NER, spaCy, Transformers, Startup',
+  10
+);
+
+-- Project 12: Multi-Omics Inner Ear (BOTH -> Technical)
+INSERT INTO projects (title, strand_type, description, problem, method, result, github_url, tags, position_index) VALUES (
+  'Multi-Omics Target Identification',
+  'technical',
+  'Understanding palmitoylation requires integrating heterogeneous genomic datasets; manual integration is error-prone.',
+  '**1. Context & Business Need**
 
 Organization: INM (Institut for Neurosciences of Montpellier), France - Academic neuroscience research lab
 
-Business Problem: Understanding spatial and functional organization of palmitoylation (lipid modification) in inner ear hair cells requires integrating heterogeneous genomic datasets from multiple publications; manual data integration is time-consuming, error-prone, and doesn't scale
+Business Problem: Understanding spatial and functional organization of palmitoylation (lipid modification) in inner ear hair cells requires integrating heterogeneous genomic datasets from multiple publications; manual data integration is time-consuming, error-prone, and doesn''t scale
 
 Stakeholders:
 
@@ -1136,8 +1115,8 @@ Publication format variations (supplementary data as Excel, CSV, raw sequencing 
 
 Biological validation requirements (candidate targets must be experimentally testable)
 
-Limited computational resources (academic lab setting)`,
-        method: `**2. Technical Solution**
+Limited computational resources (academic lab setting)',
+  '**2. Technical Solution**
 
 Description: Comprehensive cross-review computational pipeline for multi-omics data integration, identifying palmitoylation locus targets in inner ear hair cells through automated literature mining, dataset harmonization, and statistical analysis
 
@@ -1240,8 +1219,8 @@ Close collaboration with PI (Amel El Bahloul): Weekly meetings to review candida
 
 Integration of domain expertise: PI provided biological context for interpreting results (hair cell biology, palmitoylation function, auditory physiology)
 
-Cross-validation with wet lab: Prioritized candidates validated by PhD students using patch-clamp electrophysiology (separate project)`,
-        result: `**4. Results & Impact**
+Cross-validation with wet lab: Prioritized candidates validated by PhD students using patch-clamp electrophysiology (separate project)',
+  '**4. Results & Impact**
 
 Deliverables:
 
@@ -1309,12 +1288,8 @@ Publication: Co-author manuscript on computational framework + biological insigh
 
 Tags: Bioinformatics, Multi-Omics, Data Integration, Genomics, Palmitoylation, Inner Ear, Hair Cells, Python, pandas, BioPython, Literature Mining, ETL Pipeline, Neuroscience, Hearing Research, Computational Biology
 
-Documentation: Methods document (data sources, integration methodology, quality control steps), Jupyter notebooks (exploratory analysis, visualizations), README (pipeline usage instructions, dependencies), Supplementary file for future manuscript (dataset metadata, candidate target list)`,
-        github_url: 'https://github.com/iyedjaziri/',
-        image_url: null,
-        tags: 'Bioinformatics, Multi-Omics, Genomics, Python, ETL Pipeline, Neuroscience',
-        position_index: 11,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString()
-    }
-];
+Documentation: Methods document (data sources, integration methodology, quality control steps), Jupyter notebooks (exploratory analysis, visualizations), README (pipeline usage instructions, dependencies), Supplementary file for future manuscript (dataset metadata, candidate target list)',
+  'https://github.com/iyedjaziri/',
+  'Bioinformatics, Multi-Omics, Genomics, Python, ETL Pipeline, Neuroscience',
+  11
+);
