@@ -6,7 +6,7 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  base: process.env.NODE_ENV === "production" ? "/Data-DNA-Portfolio/" : "/",
+  base: process.env.NODE_ENV === "production" ? "/friendly-fishstick/" : "/",
   plugins: [react()],
   server: {
     allowedHosts: true,
